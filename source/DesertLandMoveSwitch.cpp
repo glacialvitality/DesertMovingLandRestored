@@ -53,7 +53,7 @@ void DesertLandMoveSwitch::calcAnim() {
     TPos3f mtx2;
     mtx2.setInline(mtx);
     f32 val = mSpringValue->_4;
-    if (!val == 0.001f) {
+    if (!MR::isNearZero(val, 0.001f)) {
         TVec3f stack_20;
         f32 f3 = mtx2[2][3];
         f32 f2 = mtx2[1][3];

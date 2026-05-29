@@ -30,7 +30,7 @@ public:
 	f32 _C; -> mDamping
 	f32 _10; -> mVelocity
     */
-    SpringValue* mSpringValue; 
+    SpringValue* mSpringValue;          // 0x90
     MapObjConnector* mMapObjConnector;  // 0x94
     bool _98;
     bool _99;

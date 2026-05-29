@@ -1,12 +1,5 @@
 #include "DesertMovingLand.h"
 
-namespace MR {
-    bool isPlayerOnPress() {
-        MarioActor* pMarioActor = MR::getMarioHolder()->getMarioActor();
-        return pMarioActor->_6BC != 0;
-    }
-};
-
 namespace NrvDesertMovingLand {
     FULL_NERVE(HostTypeWaitTop, DesertMovingLand, Wait);
     FULL_NERVE(HostTypeWaitBottom, DesertMovingLand, Wait);
@@ -21,12 +14,11 @@ namespace {
     static const char* cDemoName = "砂漠ＵＦＯ上昇";
 };
 
-DesertMovingLand::DesertMovingLand(const char* pName) : MapObjActor(pName), _C4(gZeroVec), _D0(gZeroVec) {
+DesertMovingLand::DesertMovingLand(const char* pName) : MapObjActor(pName), _C4(0.0f, 0.0f, 0.0f), _D0(0.0f, 0.0f, 0.0f) {
     _DC = 720;
     _E0 = 720;
     _E4.identity();
 }
-
 void DesertMovingLand::init(const JMapInfoIter& rIter) {
     MapObjActor::init(rIter);
     MapObjActorInitInfo info = MapObjActorInitInfo();
@@ -80,7 +72,7 @@ void DesertMovingLand::control() {
         updateDemoPlayerPos();
 
     MR::startLevelSound(this, "SE_AT_LV_WIND_MOVING_DESERT", -1, -1, -1);
-    if (!isNerve(&NrvDesertMovingLand::HostTypeStop::sInstance) && MR::isPlayerOnPress())
+    if (!isNerve(&NrvDesertMovingLand::HostTypeStop::sInstance) && isPlayerOnPress())
         setNerve(&NrvDesertMovingLand::HostTypeStop::sInstance);
 }
 
@@ -200,6 +192,11 @@ void DesertMovingLand::exeStop() {
     if (MR::isStep(this, 0x1E))
         mVelocity.zero();
 }
+
+bool DesertMovingLand::isPlayerOnPress() {
+        MarioActor* pMarioActor = MR::getMarioHolder()->getMarioActor();
+        return pMarioActor->_6BC != 0;
+    }
 
 void DesertMovingLand::connectToScene(const MapObjActorInitInfo& rInfo) {
     MR::connectToSceneCollisionMapObj(this);
