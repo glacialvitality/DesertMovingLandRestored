@@ -1,0 +1,25 @@
+{
+  "Name": "UFO Restored",
+  "Author": "GlacialVitality",
+  "Description": "UFOs from Battlerock Galaxy ported to SMG2",
+  "InstallDependencies": ["Syati_ObjectFactories", "Syati_Init", "ExtAreaObjMgr"],
+  "SupportedGames": [
+    "SB4E"
+  ],
+  "ModuleData" : [
+    {
+      "ProductMapObj": [
+        {
+          "Name" : "UFOSolid",
+          "Function" : "createExtActor<UFOSolid>",
+          "Include" : "UFOBase.h"
+        },
+        {
+          "Name" : "UFOBreakable",
+          "Function" : "createExtActor<UFOBreakable>",
+          "Include" : "UFOBase.h"
+        }
+      ]
+    }
+  ]
+}
