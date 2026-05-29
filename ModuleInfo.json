@@ -1,8 +1,8 @@
 {
-  "Name": "UFO Restored",
+  "Name": "DesertMovingLand Restored",
   "Author": "GlacialVitality",
-  "Description": "UFOs from Battlerock Galaxy ported to SMG2",
-  "InstallDependencies": ["Syati_ObjectFactories", "Syati_Init", "ExtAreaObjMgr"],
+  "Description": "DesertMovingLand planets and their related switches ported to SMG2",
+  "InstallDependencies": ["Syati_ObjectFactories", "Syati_Init"],
   "SupportedGames": [
     "SB4E"
   ],
@@ -10,14 +10,14 @@
     {
       "ProductMapObj": [
         {
-          "Name" : "UFOSolid",
-          "Function" : "createExtActor<UFOSolid>",
-          "Include" : "UFOBase.h"
+          "Name" : "DesertMovingLand",
+          "Function" : "createExtActor<DesertMovingLand>",
+          "Include" : "DesertMovingLand.h"
         },
         {
-          "Name" : "UFOBreakable",
-          "Function" : "createExtActor<UFOBreakable>",
-          "Include" : "UFOBase.h"
+          "Name" : "DesertLandMoveSwitch",
+          "Function" : "createExtActor<DesertLandMoveSwitch>",
+          "Include" : "DesertLandMoveSwitch.h"
         }
       ]
     }
