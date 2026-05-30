@@ -1,4 +1,22 @@
 #include "DesertLandMoveSwitch.h"
+#include "Game/LiveActor/HitSensor.h"
+#include "Game/LiveActor/LiveActor.h"
+#include "Game/MapObj/MapObjConnector.h"
+#include "Game/Util/ActorMovementUtil.h"
+#include "Game/Util/ActorSensorUtil.h"
+#include "Game/Util/ActorSwitchUtil.h"
+#include "Game/Util/DemoUtil.h"
+#include "Game/Util/JMapInfo.h"
+#include "Game/Util/JMapUtil.h"
+#include "Game/Util/LiveActorUtil.h"
+#include "Game/Util/ModelUtil.h"
+#include "Game/Util/ObjUtil.h"
+#include "Game/Util/PlayerUtil.h"
+#include "Game/Util/SceneUtil.h"
+#include "Game/Util/SoundUtil.h"
+#include "Game/Util/SpringValue.h"
+#include "JSystem/JGeometry/TMatrix.h"
+#include "JSystem/JGeometry/TVec.h"
 
 namespace NrvDesertLandMoveSwitch {
     FULL_NERVE(HostTypeWait, DesertLandMoveSwitch, Wait);
@@ -27,11 +45,11 @@ void DesertLandMoveSwitch::init(const JMapInfoIter& rIter) {
     initModelAndCollision(rIter);
     MR::connectToSceneMapObj(this);
     if (stack_C == -1) {
-        initNerve(&NrvDesertLandMoveSwitch::HostTypeWait::sInstance, nullptr);
+        initNerve(&NrvDesertLandMoveSwitch::HostTypeWait::sInstance, 0);
     } else {
         MR::startBck(this, "On", 0);
         MR::setAllAnimFrameAtEnd(this, "On");
-        initNerve(&NrvDesertLandMoveSwitch::HostTypeOn::sInstance, nullptr);
+        initNerve(&NrvDesertLandMoveSwitch::HostTypeOn::sInstance, 0);
     }
     f32 stack_8 = -1.0f;
     MR::calcModelBoundingRadius(&stack_8, this);
@@ -59,9 +77,9 @@ void DesertLandMoveSwitch::calcAnim() {
         f32 f2 = mtx2[1][3];
         f32 f1 = mtx2[0][3];
         stack_20.set(f1, f2, f3); //stack_20.set< f32 >(f1, f2, f3);
-        TVec3f stack_14, stack_8;
+        TVec3f stack_14, stack_8; //stack_8.setPS(stack_14);
         MR::calcUpVec(&stack_14, this);
-        stack_8.set(stack_14); //stack_8.setPS(stack_14);
+        stack_8 = stack_14;
         stack_8.x *= val;
         stack_8.y *= val;
         stack_8.z *= val;
@@ -102,7 +120,7 @@ bool DesertLandMoveSwitch::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSenso
 }
 
 void DesertLandMoveSwitch::initModelAndCollision(const JMapInfoIter& rIter) {
-    const char* pObjName = 0;
+    const char* pObjName = "";
     MR::getObjectName(&pObjName, rIter);
     _A0 = pObjName;
     initModelManagerWithAnm(pObjName, 0, 0, false);
@@ -110,7 +128,7 @@ void DesertLandMoveSwitch::initModelAndCollision(const JMapInfoIter& rIter) {
     HitSensor* sensorBody = MR::addHitSensorMapObj(this, "body", 8, 0.0f, TVec3f(0.0f, 0.0f, 0.0f));
     HitSensor* sensorMove = MR::addHitSensorMapObj(this, "move", 8, 0.0f, TVec3f(0.0f, 0.0f, 0.0f));
     MR::initCollisionParts(this, pObjName, sensorBody, 0);
-    mCollisionParts = MR::createCollisionPartsFromLiveActor(this, "Move", sensorMove, (MR::CollisionScaleType)2); //MR::UNKNOWN_2
+    mCollisionParts = MR::createCollisionPartsFromLiveActor(this, "Move", sensorMove, (MR::CollisionScaleType)2);
     MR::validateCollisionParts(mCollisionParts);
 }
 
@@ -156,7 +174,7 @@ void DesertLandMoveSwitch::updateTimerSE() {
             s32 s = _9C;
             if (lf <= s) {
                 if (step2 == s) {
-                    return MR::startSystemSE("SE_SY_TIMER_A_0", -1, -1);
+                    MR::startSystemSE("SE_SY_TIMER_A_0", -1, -1);
                 } else {
                     if (!(lf % 60)) {
                         if (lf < s - 600)
@@ -222,7 +240,7 @@ void DesertLandMoveSwitch::exeReturn() {
     }
 
     if (!_99 && _9A)
-        mSpringValue->_10 += -10.0f; //mVelocity
+        mSpringValue->_10 += -10.0f;
 
     mSpringValue->update();
 
@@ -234,6 +252,6 @@ void DesertLandMoveSwitch::exeReturn() {
 }
 
 void SpringValue::reset() {
-    _4 = _0; //mSpringValue = mRestValue;
-    _10 = 0.0f; //mVelocity
+    _4 = _0;
+    _10 = 0.0f;
 }

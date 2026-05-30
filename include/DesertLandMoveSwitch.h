@@ -25,12 +25,12 @@ public:
     CollisionParts* mCollisionParts;
     /*
     f32 _0; -> mRestValue
-	f32 _4; -> mSpringValue
+	f32 _4; -> mSpringValue (// 0x90)
 	f32 _8; -> mAccelFactor
 	f32 _C; -> mDamping
 	f32 _10; -> mVelocity
     */
-    SpringValue* mSpringValue;          // 0x90
+    SpringValue* mSpringValue;          
     MapObjConnector* mMapObjConnector;  // 0x94
     bool _98;
     bool _99;
