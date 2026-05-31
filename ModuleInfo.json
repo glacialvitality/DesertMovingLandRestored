@@ -1,7 +1,7 @@
 {
-  "Name": "DesertMovingLand Restored",
+  "Name": "Dusty Dune Restored [Test Build]",
   "Author": "GlacialVitality",
-  "Description": "DesertMovingLand planets and their related switches ported to SMG2",
+  "Description": "A ton of Dusty Dune related content, such as DesertMovingLand planets and their related switches ported to SMG2",
   "InstallDependencies": ["Syati_ObjectFactories", "Syati_Init"],
   "SupportedGames": [
     "SB4E"

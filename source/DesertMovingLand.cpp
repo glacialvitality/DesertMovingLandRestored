@@ -32,8 +32,7 @@ namespace {
 
 namespace MR {
     /*
-    @note Source: Petari (file: shibbolet.net/smg/RMGK01_01(1).i64)
-    \# Util.a MapPartsUtil.o
+    Util.a MapPartsUtil.o
     .text:803E0F44
     .text:803E0F44 # int __fastcall MR::setBodySensorTypePress(int)
     .text:803E0F44 MR::setBodySensorTypePress((LiveActor *)):
@@ -52,6 +51,9 @@ namespace MR {
     .text:803E0F6C                 addi      r1, r1, 0x10
     .text:803E0F70                 blr
     .text:803E0F70 # End of function MR::setBodySensorTypePress((LiveActor *))
+
+    Source: Petari (file: shibbolet.net/smg/RMGK01_01(1).i64)
+
     */
     void setBodySensorTypePress(LiveActor* pActor) {
         pActor->getSensor("body")->setType(0x76);
