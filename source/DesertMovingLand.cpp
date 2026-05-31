@@ -69,16 +69,16 @@ void DesertMovingLand::init(const JMapInfoIter& rIter) {
 
     if (MR::isValidSwitchA(this)) {
         _C4.set(mTranslation);
-        TVec3f temp(stack_3C);
+        TVec3f temp = stack_3C;
         temp.scale(arg);
         _D0.set(_C4 - temp); // _D0.set(_C4 - stack_3C.scaleInline(arg));
     } else {
         _D0.set(mTranslation);
-        TVec3f temp2(stack_3C);
+        TVec3f temp2 = stack_3C;
         temp2.scale(arg);
-        _C4.set(_C4 - temp2); //_C4.set(_D0 + stack_3C.scaleInline(arg));
+        _C4.set(_D0 + temp2); //_C4.set(_D0 + stack_3C.scaleInline(arg));
     }
-    //MR::setBodySensorType(this, 0x76);
+    MR::setBodySensorType(this, 0x76);
 }
 
 void DesertMovingLand::control() {
