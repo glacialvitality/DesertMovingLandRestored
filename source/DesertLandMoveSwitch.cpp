@@ -255,3 +255,5 @@ void SpringValue::reset() {
     _4 = _0;
     _10 = 0.0f;
 }
+
+DesertLandMoveSwitch::~DesertLandMoveSwitch(){};

@@ -18,7 +18,6 @@ public:
     void exeMoveUp();
     void exeMoveSign();
     void exeStop();
-    bool isPlayerOnPress();
 
     TVec3f _C4;
     TVec3f _D0;

@@ -5,6 +5,7 @@ class DesertLandMoveSwitch : public LiveActor {
 public:
     DesertLandMoveSwitch(const char* pName);
 
+    virtual ~DesertLandMoveSwitch();
     virtual void init(const JMapInfoIter& rIter);
     virtual void initAfterPlacement();
     virtual void calcAnim();
@@ -43,4 +44,4 @@ namespace MR {
     bool isMsgHipDropFloor(u32);
 }
 
-const char* gDesertLandMoveSwitchvar = 0;
+//const char* gDesertLandMoveSwitchvar = 0; why the fuck is this here?

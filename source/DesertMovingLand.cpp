@@ -1,4 +1,15 @@
 #include "DesertMovingLand.h"
+#include "Game/Player/MarioHolder.h"
+
+#include "Game/MapObj/MapObjActorInitInfo.h"
+#include "Game/Util/ActorSensorUtil.h"
+#include "Game/Util/ActorSwitchUtil.h"
+#include "Game/Util/DemoUtil.h"
+#include "Game/Util/LiveActorUtil.h"
+#include "Game/Util/ObjUtil.h"
+#include "Game/Util/SoundUtil.h"
+#include "JSystem/JGeometry/TVec.h"
+#include "revolution/mtx.h"
 
 namespace NrvDesertMovingLand {
     FULL_NERVE(HostTypeWaitTop, DesertMovingLand, Wait);
@@ -12,13 +23,19 @@ namespace NrvDesertMovingLand {
 
 namespace {
     static const char* cDemoName = "砂漠ＵＦＯ上昇";
+    bool isPlayerOnPress() {
+        MarioActor* pMarioActor = MR::getMarioHolder()->getMarioActor();
+        return pMarioActor->_6BC != 0;
+    }
+    const static Vec gZeroVec = {0.0f, 0.0f, 0.0f};
 };
 
-DesertMovingLand::DesertMovingLand(const char* pName) : MapObjActor(pName), _C4(0.0f, 0.0f, 0.0f), _D0(0.0f, 0.0f, 0.0f) {
+DesertMovingLand::DesertMovingLand(const char* pName) : MapObjActor(pName), _C4(gZeroVec), _D0(gZeroVec) {
     _DC = 720;
     _E0 = 720;
     _E4.identity();
 }
+
 void DesertMovingLand::init(const JMapInfoIter& rIter) {
     MapObjActor::init(rIter);
     MapObjActorInitInfo info = MapObjActorInitInfo();
@@ -52,18 +69,16 @@ void DesertMovingLand::init(const JMapInfoIter& rIter) {
 
     if (MR::isValidSwitchA(this)) {
         _C4.set(mTranslation);
-        TVec3f scaledOffset = stack_3C;
-        scaledOffset.scale(arg);
-        _D0.set(_C4 - scaledOffset);
-        //_D0.set(_C4 - stack_3C.scaleInline(arg));
+        TVec3f temp(stack_3C);
+        temp.scale(arg);
+        _D0.set(_C4 - temp); // _D0.set(_C4 - stack_3C.scaleInline(arg));
     } else {
         _D0.set(mTranslation);
-        TVec3f scaledOffset = stack_3C;
-        scaledOffset.scale(arg);
-        _C4.set(_D0 + scaledOffset);
-        //_C4.set(_D0 + stack_3C.scaleInline(arg));
+        TVec3f temp2(stack_3C);
+        temp2.scale(arg);
+        _C4.set(_C4 - temp2); //_C4.set(_D0 + stack_3C.scaleInline(arg));
     }
-    MR::setBodySensorType(this, 0x76); //MR::setBodySensorTypePress(this);
+    MR::setBodySensorType(this, 0x76);
 }
 
 void DesertMovingLand::control() {
@@ -177,7 +192,7 @@ void DesertMovingLand::exeMoveSign() {
         else {
             if (isNerve(&NrvDesertMovingLand::HostTypeMoveDownSign::sInstance)) {
                 if (MR::isDemoActive("砂ＵＦＯ下降"))
-                    //MR::startEventBGM(0); //what the fuck is this?
+                    MR::startStageBGM("MBGM_SMG2_GALAXY_HURRY", false);
 
                 setNerve(&NrvDesertMovingLand::HostTypeMoveDown::sInstance);
             }
@@ -192,11 +207,6 @@ void DesertMovingLand::exeStop() {
     if (MR::isStep(this, 0x1E))
         mVelocity.zero();
 }
-
-bool DesertMovingLand::isPlayerOnPress() {
-        MarioActor* pMarioActor = MR::getMarioHolder()->getMarioActor();
-        return pMarioActor->_6BC != 0;
-    }
 
 void DesertMovingLand::connectToScene(const MapObjActorInitInfo& rInfo) {
     MR::connectToSceneCollisionMapObj(this);
