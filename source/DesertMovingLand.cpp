@@ -30,6 +30,37 @@ namespace {
     const static Vec gZeroVec = {0.0f, 0.0f, 0.0f};
 };
 
+namespace MR {
+    /*
+    @note Source: Petari (file: shibbolet.net/smg/RMGK01_01(1).i64)
+    \# Util.a MapPartsUtil.o
+    .text:803E0F44
+    .text:803E0F44 # int __fastcall MR::setBodySensorTypePress(int)
+    .text:803E0F44 MR::setBodySensorTypePress((LiveActor *)):
+    .text:803E0F44                                         # CODE XREF: DesertMovingLand::init((JMapInfoIter const &))+1E0↑p
+    .text:803E0F44                                         # SandCapsulePressGround::init((JMapInfoIter const &))+50↑p ...
+    .text:803E0F44                 stwu      r1, -0x10(r1)
+    .text:803E0F48                 mflr      r0
+    .text:803E0F4C                 lis       r4, aBody_66@ha # "body"
+    .text:803E0F50                 stw       r0, 0x14(r1)
+    .text:803E0F54                 addi      r4, r4, aBody_66@l # "body"
+    .text:803E0F58                 bl        LiveActor::getSensor(const(char const *))
+    .text:803E0F5C                 li        r4, 0x76 # 'v'
+    .text:803E0F60                 bl        HitSensor::setType((ulong))
+    .text:803E0F64                 lwz       r0, 0x14(r1)
+    .text:803E0F68                 mtlr      r0
+    .text:803E0F6C                 addi      r1, r1, 0x10
+    .text:803E0F70                 blr
+    .text:803E0F70 # End of function MR::setBodySensorTypePress((LiveActor *))
+    */
+    void setBodySensorTypePress(LiveActor* pActor) {
+        pActor->getSensor("body")->setType(0x76);
+    }
+
+    
+};
+
+
 DesertMovingLand::DesertMovingLand(const char* pName) : MapObjActor(pName), _C4(gZeroVec), _D0(gZeroVec) {
     _DC = 720;
     _E0 = 720;
@@ -78,7 +109,7 @@ void DesertMovingLand::init(const JMapInfoIter& rIter) {
         temp2.scale(arg);
         _C4.set(_D0 + temp2); //_C4.set(_D0 + stack_3C.scaleInline(arg));
     }
-    MR::setBodySensorType(this, 0x76);
+    MR::setBodySensorTypePress(this);
 }
 
 void DesertMovingLand::control() {

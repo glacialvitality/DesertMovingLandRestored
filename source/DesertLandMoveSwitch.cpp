@@ -37,7 +37,7 @@ void DesertLandMoveSwitch::init(const JMapInfoIter& rIter) {
     MR::calcModelBoundingRadius(&stack_8, this);
     MR::setClippingTypeSphere(this, stack_8);
     MR::setGroupClipping(this, rIter, 0x10);
-    initSound(4, 0, 0, 0);
+    initSound(4, false, false, false);
     MR::needStageSwitchWriteA(this, rIter);
     MR::tryRegisterDemoCast(this, rIter);
     makeActorAppeared();
