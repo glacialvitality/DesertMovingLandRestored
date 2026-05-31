@@ -78,7 +78,7 @@ void DesertMovingLand::init(const JMapInfoIter& rIter) {
         temp2.scale(arg);
         _C4.set(_C4 - temp2); //_C4.set(_D0 + stack_3C.scaleInline(arg));
     }
-    MR::setBodySensorType(this, 0x76);
+    //MR::setBodySensorType(this, 0x76);
 }
 
 void DesertMovingLand::control() {

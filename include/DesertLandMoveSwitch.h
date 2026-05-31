@@ -5,7 +5,6 @@ class DesertLandMoveSwitch : public LiveActor {
 public:
     DesertLandMoveSwitch(const char* pName);
 
-    virtual ~DesertLandMoveSwitch();
     virtual void init(const JMapInfoIter& rIter);
     virtual void initAfterPlacement();
     virtual void calcAnim();

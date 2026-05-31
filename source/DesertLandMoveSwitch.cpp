@@ -1,22 +1,4 @@
 #include "DesertLandMoveSwitch.h"
-#include "Game/LiveActor/HitSensor.h"
-#include "Game/LiveActor/LiveActor.h"
-#include "Game/MapObj/MapObjConnector.h"
-#include "Game/Util/ActorMovementUtil.h"
-#include "Game/Util/ActorSensorUtil.h"
-#include "Game/Util/ActorSwitchUtil.h"
-#include "Game/Util/DemoUtil.h"
-#include "Game/Util/JMapInfo.h"
-#include "Game/Util/JMapUtil.h"
-#include "Game/Util/LiveActorUtil.h"
-#include "Game/Util/ModelUtil.h"
-#include "Game/Util/ObjUtil.h"
-#include "Game/Util/PlayerUtil.h"
-#include "Game/Util/SceneUtil.h"
-#include "Game/Util/SoundUtil.h"
-#include "Game/Util/SpringValue.h"
-#include "JSystem/JGeometry/TMatrix.h"
-#include "JSystem/JGeometry/TVec.h"
 
 namespace NrvDesertLandMoveSwitch {
     FULL_NERVE(HostTypeWait, DesertLandMoveSwitch, Wait);
@@ -255,5 +237,3 @@ void SpringValue::reset() {
     _4 = _0;
     _10 = 0.0f;
 }
-
-DesertLandMoveSwitch::~DesertLandMoveSwitch(){};
