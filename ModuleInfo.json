@@ -18,6 +18,11 @@
           "Name" : "DesertLandMoveSwitch",
           "Function" : "createExtActor<DesertLandMoveSwitch>",
           "Include" : "DesertLandMoveSwitch.h"
+        },
+        {
+          "Name" : "SandUpDownTriRock",
+          "Function" : "createExtActor<SandUpDownTriRock>",
+          "Include" : "SandUpDownTriRock.h"
         }
       ]
     }
