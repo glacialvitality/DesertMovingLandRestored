@@ -52,7 +52,7 @@ void DesertLandMoveSwitch::calcAnim() {
     MtxPtr mtx = MR::getJointMtx(this, "Move");
     TPos3f mtx2;
     mtx2.setInline(mtx);
-    f32 val = mSpringValue->_4;
+    f32 val = mSpringValue->mSpringValue;
     if (!MR::isNearZero(val, 0.001f)) {
         TVec3f stack_20;
         f32 f3 = mtx2[2][3];
@@ -181,7 +181,7 @@ void DesertLandMoveSwitch::exeWait() {
 
     tryConnect();
     if (!_99 && _9A) {
-        mSpringValue->_10 += -10.0f;
+        mSpringValue->mVelocity += -10.0f;
     }
 
     mSpringValue->update();
@@ -222,7 +222,7 @@ void DesertLandMoveSwitch::exeReturn() {
     }
 
     if (!_99 && _9A)
-        mSpringValue->_10 += -10.0f;
+        mSpringValue->mVelocity += -10.0f;
 
     mSpringValue->update();
 
@@ -234,6 +234,6 @@ void DesertLandMoveSwitch::exeReturn() {
 }
 
 void SpringValue::reset() {
-    _4 = _0;
-    _10 = 0.0f;
+    mSpringValue = mRestValue;
+    mVelocity = 0.0f;
 }
