@@ -1,5 +1,7 @@
 #include "DesertLandMoveSwitch.h"
 
+// THIS OBJECT IS NOW DEPRECATED Use SuperHackio/SMG2_DesertLandMoveSwitch
+
 namespace NrvDesertLandMoveSwitch {
     FULL_NERVE(HostTypeWait, DesertLandMoveSwitch, Wait);
     FULL_NERVE(HostTypeSwitchDown, DesertLandMoveSwitch, SwitchDown);

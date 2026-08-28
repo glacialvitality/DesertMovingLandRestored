@@ -1,6 +1,8 @@
 #pragma once
 #include "Syati.h"
 
+// THIS OBJECT IS NOW DEPRECATED Use SuperHackio/SMG2_DesertLandMoveSwitch
+
 class DesertLandMoveSwitch : public LiveActor {
 public:
     DesertLandMoveSwitch(const char* pName);
