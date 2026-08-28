@@ -1,7 +1,7 @@
 {
   "Name": "Dusty Dune Restored [Test Build]",
   "Author": "GlacialVitality",
-  "Description": "A ton of Dusty Dune related content, such as DesertMovingLand planets and their related switches ported to SMG2",
+  "Description": "A ton of Dusty Dune related content, such as DesertMovingLand planets ported to SMG2",
   "InstallDependencies": ["Syati_ObjectFactories", "Syati_Init"],
   "SupportedGames": [
     "SB4E"
@@ -13,11 +13,6 @@
           "Name" : "DesertMovingLand",
           "Function" : "createExtActor<DesertMovingLand>",
           "Include" : "DesertMovingLand.h"
-        },
-        {
-          "Name" : "DesertLandMoveSwitch",
-          "Function" : "createExtActor<DesertLandMoveSwitch>",
-          "Include" : "DesertLandMoveSwitch.h"
         },
         {
           "Name" : "SandUpDownTriRock",
